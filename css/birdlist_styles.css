@@ -1,0 +1,211 @@
+body {
+  font-size: 16px;
+  color: #fff;
+  background-color: white;
+  font-family: "Poppins", sans-serif;
+  overflow: hidden;
+}
+
+#footer {
+  background-color: #e3f2fd;
+  width:100%;
+/*  margin-top:15px;*/
+  height: 1000px;
+}
+
+/* ----------Header nav bar ------------------- */
+
+.header {
+  background-color: #e3f2fd;
+  height: 50px;
+  border-radius: 0;
+}
+
+.navitems {
+  padding-top:10px;
+  padding-left:10px;
+}
+
+.brand {
+  font-size: 15pt;
+  color: darkslategray;
+  padding-right: 30px;
+  padding-top: 0;
+}
+
+.item {
+  font-size: 13pt;
+  color: lightslategray;
+  padding-top:0;
+  padding-right: 20px;
+}
+
+.brand:hover, .brand:focus {
+  text-decoration: none;
+}
+
+.item:hover, .item:focus {
+  text-decoration: none;
+}
+
+/* ----------Header nav bar ------------------- */
+
+/* ----------Main content ------------------- */
+
+#main-content{
+  margin-top:15px;
+  padding:0;
+  background-color: #e3f2fd;
+  height:500px;
+}
+
+#panel-left {
+/*  border: 1px dashed black;*/
+  width: 20%;
+  height:500px;
+  float:left;
+  padding:0;
+  margin-left:1%;
+}
+
+#info-panel {
+/*  border: 1px dashed black;*/
+  margin-left:22%;
+  width: 78%;
+  height:100%;
+  padding:0;
+/*  display:block;*/
+}
+
+.search {
+  color:darkslategray;
+  background-color: white;
+  border: none;
+  height:7.5%;
+  width: 100%;
+  margin-top:10px;
+  margin-right:0;
+  margin-bottom:10px;
+  padding-left:2px;
+}
+
+.dropdowns {
+  /*color:darkslategray;
+  background-color: white;*/
+  border: none;
+  height:7.5%;
+  width: 100%;
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:10px;
+  padding-left:2px;
+}
+
+.dropdown {
+/*  border: 1px solid black;*/
+  background-color: white;
+  height:100%;
+/*  position: relative;
+  display: inline-block;*/
+}
+
+#country-dropdown {
+  width:48%;
+  float:left;
+  margin-right:4%;
+}
+
+#group-dropdown {
+  width:48%;
+  float:left;
+}
+
+button {
+  color: lightslategray;
+  width: 100%;
+  height:100%;
+  margin:0;
+  padding:0;
+  border-radius: 0;
+  border: none;
+  background-color: white;
+  text-align: left;
+  padding-left:2px;
+}
+
+button:hover {
+  color: darkslateblue;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  width: 100%;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  height:220px;
+  overflow-y: auto;
+  }
+
+.dropdown-content a {
+  color: lightslategray;
+  padding-left: 2px;
+  font-size: 11pt;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  color: darkslateblue;
+}
+
+input.search:focus {
+  outline: 1px solid darkslategray; 
+}
+
+.list-column {
+  color:darkslategray;
+  background-color: white;
+  height:68%;
+  width: 100%;
+  overflow-y: scroll;
+  padding-left:2px;
+}
+
+ul.birds {
+  list-style: none;
+  padding-left:2px;
+}
+
+li a.bird {
+  color:lightslategray;
+}
+
+li a.bird:hover, li a.bird:focus {
+  text-decoration: none;
+  cursor: pointer;
+  color: darkslateblue;
+/*  background-color: lightslategray;*/
+}
+
+#bird-image {
+  background-color: white;
+  width:99%;
+  height:344px;
+  margin-top: 10px;
+/*  margin-left: 10px;*/
+  display: inline-block;
+}
+
+#bird-comments {
+  background-color: white;
+  width:99%;
+  height:80px;
+  margin-top:5px;
+  white-space: pre-wrap;
+}
+
+
+
+

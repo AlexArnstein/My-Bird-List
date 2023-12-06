@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Alex's bird list</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/birdlist_styles.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+	<header>
+		<div class="header">
+			<div class="navitems">
+			  	<a class="brand" href="bird-list.html">Alex's bird list</a>
+			  	<a class="item" href="totals.html">Totals</a>
+		      	<a class="item" href="bird-list.html">Bird list</a>
+	     	</div>
+
+		</div>
+	</header>
+
+	<div id="main-content" class="container-fluid">
+		<div id="panel-left" class="container-fluid">
+			<input class="search" placeholder="Search..."></input>
+			<div class="dropdowns">
+				<div id="country-dropdown" class="dropdown">
+					<button id="country-button">Country</button>
+					<div id="country-content" class="dropdown-content">
+						<a href="#">United Kingdom</a>
+						<a href="#">Australia</a>
+						<a href="#">Indonesia</a>
+						<a href="#">Malaysia</a>
+						<a href="#">New Zealand</a>
+						<a href="#">Spain</a>
+						<a href="#">Thailand</a>
+						<a href="#">Vietnam</a>
+					</div>
+				</div>
+				<div id="group-dropdown" class="dropdown">
+					<button id="group-button">Bird group</button>
+					<div id="group-content" class="dropdown-content">
+						<a href="#">Doves</a>
+					</div>
+				</div>
+			</div>
+			<div class="list-column">
+				<ul id = "birdsul" class="birds">
+					<li><a class="bird"></a></li>
+				</ul>
+			</div>
+		</div>
+
+		<div id="info-panel" class="container-fluid">
+			<div id="bird-image"></div>
+			<div id="bird-comments"></div>
+		</div>
+
+<!-- 		
+		<div id="info-panel" class="container-fluid">
+			<div id="info-panel-left" class="container-fluid">
+				<div id="bird-map"></div>
+				<div id="bird-info"></div>
+			</div>
+			<div id="bird-image"></div>
+			<div id="bird-comments"></div>
+		</div> -->
+	</div>
+
+	<div id="footer"></div>
+
+	<script src="js/jquery-3.7.0.min.js"></script>
+	<script src="js/birdlist_script.js"></script>
+
+</body>
+</html>
