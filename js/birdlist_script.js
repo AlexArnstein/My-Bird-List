@@ -1,5 +1,5 @@
 
-//  load and process data ------------------
+//load and process data ------------------
 
 function loadfile (callback) {
 	const request = new XMLHttpRequest();
@@ -58,9 +58,9 @@ function processdata (datastring) {
 return data;
 };
 
-//  load and process data ------------------
+//load and process data ------------------
 
-// populate window  ------------------------
+//populate window  ------------------------
 
 function populate (callback) {
 	loadfile(function(data){
@@ -80,9 +80,9 @@ function populate (callback) {
 	});
 }
 
-// populate window  ------------------------
+//populate window  ------------------------
 
-//  List functionality ------------------
+//List functionality ------------------
 
 function listfunction () {
 	populate(function(dataplus){ 
@@ -139,9 +139,9 @@ function listfunction () {
 	});
 }
 
-// List functionality------------------
+//List functionality------------------
 
-// Search funtionality------------------
+//Search funtionality------------------
 
 function searchfunction() {
 	populate(function(dataplus){
@@ -169,13 +169,7 @@ function searchfunction() {
 		});
 }
 
-// Search funtionality------------------
-
-$(document).ready(function() {
-    searchfunction();
-    dropdownfunction();
-    listfunction();
-});
+//Search funtionality------------------
 
 function dropdownfunction () {
 	populate(function(dataplus){
@@ -324,3 +318,8 @@ function dropdownfunction () {
 	});
 }
 
+$(document).ready(function() {
+    searchfunction();
+    dropdownfunction();
+    listfunction();
+});
