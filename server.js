@@ -18,12 +18,33 @@ connection.connect((err) => {
 		console.log(err);
 	} else {
 		console.log("MySQL database connected");
-		data = connection.query("SELECT * FROM birds;", (err, result) => {
+
+		// connection.query("INSERT INTO birds (species, bird_group, United_Kingdom, Vietnam, Indonesia, Malaysia, Thailand, Comments, Image_link) VALUES ('Tree Sparrow', 'Sparrows and Finches', 'TRUE', 'TRUE', 'TRUE', 'TRUE', 'TRUE', 'test test', 'https://upload.wikimedia.org/wikipedia/commons/9/98/Tree_Sparrow_August_2007_Osaka_Japan.jpg');", (err, result) => {
+		// 	if (err){
+		// 		console.log(err);
+		// 	} else {
+		// 		console.log("success");
+		// 		console.log(result)
+		// 	}
+		// });
+
+		// connection.query("SELECT * FROM birds WHERE species = 'House Sparrow';", (err, result) => {console.log(result)});
+
+		connection.query("SELECT * FROM birds;", (err, result) => {
 			if (err){
 				console.log(err);
 			} else {
 				data = result;
 				console.log("Data loaded");
+
+				connection.query("DESCRIBE birds;", (err, result) => {
+				if (err){
+					console.log(err);
+				} else {
+					headers = result.map(function(value, index) { return value['Field'];});
+					table = [headers, data];
+				};
+				});
 			};
 		});
 	};
@@ -107,13 +128,19 @@ app.get('/bird-list.html', (req, res) => {
 	res.sendFile("C:\\Users\\alexa\\OneDrive\\Documents\\04 Bird List\\bird-list.html");
 })
 
-app.use(express.static("C:\\Users\\alexa\\OneDrive\\Documents\\04 Bird List\\public"));
-
 app.get('/totals.html', (req, res) => {
 	res.sendFile("C:\\Users\\alexa\\OneDrive\\Documents\\04 Bird List\\totals.html");
 })
 
-// app.get('/api/')
+app.get('/map_large.html', (req, res) => {
+	res.sendFile("C:\\Users\\alexa\\OneDrive\\Documents\\04 Bird List\\map_large.html");
+})
+
+app.use(express.static("C:\\Users\\alexa\\OneDrive\\Documents\\04 Bird List\\public"));
+
+app.get('/api/table', (req, res) => {
+	res.json(table);
+})
 
 app.listen('3000', ()=> {
 	console.log('Server started on port 3000');
