@@ -136,6 +136,10 @@ app.get('/map_large.html', (req, res) => {
 	res.sendFile("C:\\Users\\alexa\\OneDrive\\Documents\\04 Bird List\\map_large.html");
 })
 
+app.get('/update-list.html', (req, res) => {
+	res.sendFile("C:\\Users\\alexa\\OneDrive\\Documents\\04 Bird List\\update-list.html");
+})
+
 app.use(express.static("C:\\Users\\alexa\\OneDrive\\Documents\\04 Bird List\\public"));
 
 app.get('/api/table', (req, res) => {

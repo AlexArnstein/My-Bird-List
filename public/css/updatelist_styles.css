@@ -1,0 +1,305 @@
+body {
+  font-size: 16px;
+  color: #fff;
+  background-color: white;
+  font-family: "Poppins", sans-serif;
+  overflow: hidden;
+}
+
+#footer {
+  background-color: #e3f2fd;
+  width:100%;
+/*  margin-top:15px;*/
+  height: 1000px;
+}
+
+/* ----------Header nav bar ------------------- */
+
+.header {
+  background-color: #e3f2fd;
+  height: 50px;
+  border-radius: 0;
+}
+
+.navitems {
+  padding-top:10px;
+  padding-left:10px;
+}
+
+.brand {
+  font-size: 15pt;
+  color: darkslategray;
+  padding-right: 30px;
+  padding-top: 0;
+}
+
+.item {
+  font-size: 13pt;
+  color: lightslategray;
+  padding-top:0;
+  padding-right: 20px;
+}
+
+.brand:hover, .brand:focus {
+  text-decoration: none;
+}
+
+.item:hover, .item:focus {
+  text-decoration: none;
+}
+
+/* ----------Header nav bar ------------------- */
+
+/* ----------Main content ------------------- */
+
+#main-content{
+  margin-top:15px;
+  padding:0;
+  background-color: #e3f2fd;
+  height:500px;
+}
+
+#panel1 {
+  border: 1px dashed black;
+  width: 32%;
+  height:500px;
+  float:left;
+  padding:0;
+  margin-left:1%;
+}
+
+#panel2 {
+  border: 1px dashed black;
+  width: 32%;
+  height:500px;
+  float:left;
+  padding:0;
+  margin-left:1%;
+}
+
+#panel3 {
+  border: 1px dashed black;
+  width: 32%;
+  height:500px;
+  float:left;
+  padding:0;
+  margin-left:1%;
+}
+
+
+
+#info-panel {
+/*  border: 1px dashed black;*/
+  margin-left:22%;
+  width: 78%;
+  height:100%;
+  padding:0;
+/*  display:block;*/
+}
+
+.search {
+  color:darkslategray;
+  background-color: white;
+  border: none;
+  height:7.5%;
+  width: 100%;
+  margin-top:10px;
+  margin-bottom:10px;
+  padding:0;
+  padding-left:4px;
+}
+
+#search-species {
+  float:left;
+  width:78%;
+  margin-right: 2%;
+}
+
+#select-species {
+  margin-top:10px;
+  height:7.5%;
+  width: 20%;
+  text-align: center;
+}
+
+.dropdowns {
+  /*color:darkslategray;
+  background-color: white;*/
+  border: none;
+  height:7.5%;
+  width: 100%;
+  margin-top:0;
+  margin-right:0;
+  margin-bottom:10px;
+  padding-left:2px;
+}
+
+.dropdown {
+/*  border: 1px solid black;*/
+  background-color: white;
+  height:7.5%;
+/*  position: relative;
+  display: inline-block;*/
+}
+
+#country-dropdown {
+  width:48%;
+  float:left;
+  margin-right:4%;
+}
+
+#group-dropdown {
+  width:48%;
+  float:left;
+}
+
+button {
+  color: lightslategray;
+  width: 100%;
+  height:100%;
+  margin:0;
+  padding:0;
+  border-radius: 0;
+  border: none;
+  background-color: white;
+  text-align: left;
+}
+
+button:hover {
+  color: darkslateblue;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: white;
+  width: 100%;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  height:220px;
+  overflow-y: auto;
+  }
+
+.dropdown-content a {
+  color: lightslategray;
+  padding-left: 2px;
+  font-size: 11pt;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  color: darkslateblue;
+}
+
+input.search:focus {
+  outline: 1px solid darkslategray; 
+}
+
+.list-column {
+  color:darkslategray;
+  background-color: white;
+/*  height:20%;*/
+  width: 100%;
+  overflow-y: scroll;
+  padding-left:2px;
+}
+
+#group-column {
+  height: 25%;
+}
+
+#country-column1 {
+  height: 25%;
+  width: 48%;
+  margin-top: 10px;
+  float: left;
+  margin-right: 4%;
+}
+
+#country-column2 {
+  height: 25%;
+  width: 48%;
+  margin-top: 10px;
+  border: 1px solid darkslateblue;
+}
+
+.checkbox {
+  background-color: white;
+  height: 20px;
+  width: 20px;
+  margin-top: 15px;
+  margin-right: 10px;
+  margin-bottom:5px;
+  float: left;
+}
+
+#fav_text {
+  color: lightslategray;
+  margin-top: 15px;
+  margin-bottom:5px;
+}
+
+#img_input {
+  float:left;
+/*  margin-left:0;*/
+  width:78%;
+  margin-right: 2%;
+}
+
+#select-img {
+  height:7.5%;
+  width: 20%;
+  margin-top:10px;
+  text-align: center;
+}
+
+.save {
+  height: 10%;
+  margin-top:10px;
+  text-align: center;
+}
+
+ul.birds {
+  list-style: none;
+  padding-left:2px;
+}
+
+li a.bird {
+  color:lightslategray;
+}
+
+li a.bird:hover, li a.bird:focus {
+  text-decoration: none;
+  cursor: pointer;
+  color: darkslateblue;
+/*  background-color: lightslategray;*/
+}
+
+#preview {
+  text-align: center;
+  color: lightslategray;
+  margin-top: 15px;
+  margin-bottom: 10px;
+}
+
+#bird-image {
+  background-color: white;
+  width:100%;
+  height:344px;
+  margin-top: 10px;
+/*  margin-left: 10px;*/
+  display: inline-block;
+}
+
+#bird-comments {
+  background-color: white;
+  width:100%;
+  height:85px;
+  margin-top:5px;
+  white-space: pre-wrap;
+}
+
+
+
+
