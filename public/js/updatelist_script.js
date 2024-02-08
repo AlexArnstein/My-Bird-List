@@ -74,7 +74,6 @@ function update_species(data, headers) {
 			country_column2.replaceChildren();
 
 			for (i=groups_index+1; i<comments_index; i++) {
-
 				var h = headers[i];
 				var countryhtml = `<a class='country'>${h}</a>`;
 				var liobject = document.createElement("li");
@@ -106,14 +105,32 @@ function update_species(data, headers) {
 			image.style.display = "table";
 			image.style.margin = "0 auto";
 
-
-
-			
 		} else {
 			console.log(false);
 
-			country_column1.replaceChildren();
+			group_column2.replaceChildren();
+			group_column1.replaceChildren();
+
+			for (i=0; i< birdgroups.length; i++) {
+				g = birdgroups[i];
+				var grouphtml = `<a class='country'>${g}</a>`;
+				var liobject = document.createElement("li");
+				liobject.innerHTML = grouphtml;
+				group_column1.appendChild(liobject);
+			};
+
 			country_column2.replaceChildren();
+			country_column1.replaceChildren();
+
+			for (i=0; i<all_countries.length; i++) {
+				var c = all_countries[i];
+				var countryhtml = `<a class='country'>${c}</a>`;
+				var liobject = document.createElement("li");
+				liobject.innerHTML = countryhtml;
+				country_column1.appendChild(liobject);
+			};
+			
+			fav_checkbox.checked = false;
 			comments_input.value = "";
 			imagelink_input.value = "";
 			imagepane.replaceChildren();
