@@ -6,243 +6,134 @@ fetch('/api/table')
 		.then(table => {
 			headers = table[0];
 			data = table[1];
-
-			birdlistobj = populate(data);
-			listfunctionality(headers, data, birdlistobj);
-			searchfunction(birdlistobj);
-			dropdownfunction(headers, data, birdlistobj);
+			update_species(data, headers);
+			// birdlistobj = populate(data);
+			// listfunctionality(headers, data, birdlistobj);
+			// searchfunction(birdlistobj);
+			// dropdownfunction(headers, data, birdlistobj);
 			});
-		
-// populate window -----------------------------------------
 
-function populate(data) {
-	birdlistobj = document.getElementById("birdsul");
-	birdlistobj.replaceChildren();
+// select bird ---------------------------------------------
 
-	for (i=0; i<data.length; i++) {
-		var birdhtml = `<a class='bird'>${data[i]['species']}</a>`;
-		var liobject = document.createElement("li");
-		liobject.innerHTML = birdhtml;
-		birdlistobj.appendChild(liobject);
-	};
+function update_species(data, headers) {
 
-	return birdlistobj;
-};
+	select_species_button = document.getElementById("select-species");
 
-// List functionality ---------------------------------------
+	var populate_fields = e => {
 
-function listfunctionality(headers, data, birdlistobj) {
+		select_species_input = document.getElementById("search-species");
+		var filter = select_species_input.value.toUpperCase();
+		group_column1 = document.getElementById("group-column1");
+		group_column2 = document.getElementById("group-column2");
+		country_column1 = document.getElementById("country-column1");
+		country_column2 = document.getElementById("country-column2");
+		fav_checkbox = document.getElementById("fav");
+		fav_checkbox.checked = false;
+		comments_input = document.getElementById("comments_input");
+		imagelink_input = document.getElementById("img_input");
 
-	var species = data.map(function(value, index) { return value['species'];});
-	var comments = data.map(function(value, index) { return value['Comments'];});
-	var imagelinks = data.map(function(value, index) { return value['Image_link'];});
-	
-	var mappane = document.getElementById("bird-map");
-	var infopane = document.getElementById("bird-info");
-	var imagepane = document.getElementById("bird-image");
-	var commentspane = document.getElementById("bird-comments");
+		imagepane = document.getElementById("bird-image");
 
-	var birdupdate = e => {
+		var all_species = data.map(function(value, index) { return value['species'];});
+		var all_species_upper = all_species.map(function(x){ return x.toUpperCase(); });
+		var group_col = data.map(function(value, index) { return value['bird_group'];});
+		var birdgroups = [...new Set(group_col)];
+		emptyindex = birdgroups.indexOf("");
+		birdgroups.splice(emptyindex, 1);
+		birdgroups.unshift("None");
+		groups_index = headers.indexOf("bird_group");
+		comments_index = headers.indexOf("Comments");
+		var all_countries = headers.slice(groups_index +1, comments_index);
+		var all_comments = data.map(function(value, index) { return value['Comments'];});
+		var all_imagelinks = data.map(function(value, index) { return value['Image_link'];});
 
-		bird_selection = e.target.textContent;
+		if (all_species_upper.includes(filter) == true) {
 
-		bird_index = species.findIndex( (val) => val === bird_selection);
+			var species_index = all_species_upper.indexOf(filter);
+			var row = data[species_index];
 
-		image_link = imagelinks[bird_index];
+			var group = row['bird_group'];
+			group_column1.replaceChildren();
+			group_column2.replaceChildren();
 
-		var image = document.createElement("img");
-		image.src = image_link;
-		imagepane.replaceChildren();
-		imagepane.appendChild(image);
-		image.style.height = "100%";
-		image.style.display = "table";
-		image.style.margin = "0 auto";
+			for (i=0; i< birdgroups.length; i++) {
+				g = birdgroups[i];
+				var grouphtml = `<a class='country'>${g}</a>`;
+				var liobject = document.createElement("li");
+				liobject.innerHTML = grouphtml;
 
-		bird_countries = [];
-
-		for (i=headers.indexOf("bird_group")+1; i<headers.indexOf("Comments"); i++){
-			country_bool = data[bird_index][headers[i]];
-
-			if (country_bool == "TRUE"){
-				bird_countries.push(` ${headers[i]}`);
+				if (g == group) {
+					group_column2.appendChild(liobject);
+				} else {
+					group_column1.appendChild(liobject);
+				};
 			};
-		};
 
-		commentspane.textContent = `${bird_selection} |${bird_countries}\n${comments[bird_index]}`;
-		commentspane.style.color = "lightslategray";
+			species_countries = [];
+			country_column1.replaceChildren();
+			country_column2.replaceChildren();
 
-		console.log("content updated");
-	};
+			for (i=groups_index+1; i<comments_index; i++) {
 
-	listitems = birdlistobj.children;
+				var h = headers[i];
+				var countryhtml = `<a class='country'>${h}</a>`;
+				var liobject = document.createElement("li");
+				liobject.innerHTML = countryhtml;
 
-	for (let listitem of listitems) {
-		listitem.addEventListener("click", birdupdate)
-	};
-};
+				if (row[h] == 'TRUE') {
+					species_countries.push(headers[i]);
+					country_column2.appendChild(liobject);
 
-// Search funtionality ----------------------------------------------
-
-function searchfunction(birdlistobj) {
-	
-	var searchupdate = e => {
-		var searchinput = document.getElementsByClassName("search")[0];
-		var filter = searchinput.value.toUpperCase();
-
-		listitems = birdlistobj.children;
-
-		for (let listitem of listitems) {
-			bird = listitem.textContent;
-
-			if (bird.toUpperCase().indexOf(filter) > -1) {
-				listitem.style.display = "";
+				} else {
+					country_column1.appendChild(liobject);
+				};
+			};
+			
+			if (row['Favourites'] == 'TRUE') {
+				fav_checkbox.checked = true;
 			} else {
-				listitem.style.display = "none";
-			};	
-		};
-	};
+				fav_checkbox.checked = false;
+			};
 
-	var searchinput = document.getElementsByClassName("search")[0];
-	searchinput.addEventListener("keyup", searchupdate);
-};
+			comments_input.value = all_comments[species_index];
+			imagelink_input.value = all_imagelinks[species_index];
 
-// dropdown filter function ---------------------------------------------
+			var image = document.createElement("img");
+			image.src = all_imagelinks[species_index];
+			imagepane.replaceChildren();
+			imagepane.appendChild(image);
+			image.style.width = "75%";
+			image.style.display = "table";
+			image.style.margin = "0 auto";
 
-function dropdownfunction(headers, data, birdlistobj) {
 
-	var country_button = document.getElementById("country-button");
-	var country_content = document.getElementById("country-content");
-	var group_button = document.getElementById("group-button");
-	var group_content = document.getElementById("group-content");
 
-	var dropdownshow = e => {
-		var button_clicked = e.target.textContent;
-		if (button_clicked == "Country") {
-			country_content.style.display = "block";
-			group_content.style.display = "none";
+			
+		} else {
+			console.log(false);
+
+			country_column1.replaceChildren();
+			country_column2.replaceChildren();
+			comments_input.value = "";
+			imagelink_input.value = "";
+			imagepane.replaceChildren();
 		}
 
-		else if (button_clicked == "Bird group") {
-			group_content.style.display = "block";
-			country_content.style.display = "none";
-		}
 
-		else {
-			country_content.style.display = "none";
-			group_content.style.display = "none";
-		};
+
+
+
+
+		
 	};
 
-	country_button.addEventListener("click", dropdownshow);
-	group_button.addEventListener("click", dropdownshow);
-	document.body.addEventListener("click", dropdownshow);
+	select_species_button.addEventListener("click", populate_fields);
 
-	var group_col = data.map(function(value, index) { return value['bird_group'];});
-	var birdgroups = [...new Set(group_col)];
-	emptyindex = birdgroups.indexOf("");
-	birdgroups.splice(emptyindex, 1);
-
-	group_content.replaceChildren();
-	for (i=0; i<birdgroups.length; i++) {
-		var grouphtml = `<a href="#">${birdgroups[i]}</a>`;
-		var aobject = document.createElement("a");
-		aobject.innerHTML = grouphtml;
-		group_content.appendChild(aobject);
-	};
-
-	grouphtml = "<a href='#'>Favourites</a>";
-	aobject = document.createElement("a");
-	aobject.innerHTML = grouphtml;
-	group_content.insertBefore(aobject, group_content.firstChild);
-
-	grouphtml = "<a href='#'>All</a>";
-	aobject = document.createElement("a");
-	aobject.innerHTML = grouphtml;
-	group_content.insertBefore(aobject, group_content.firstChild);
-
-	var countries = headers.slice(headers.indexOf("United_Kingdom"), headers.indexOf("Comments"));
-	country_content.replaceChildren();
-	for (i=0; i<countries.length; i++) {
-		var countryhtml = `<a href="#">${countries[i]}</a>`;
-		var aobject = document.createElement("a");
-		aobject.innerHTML = countryhtml;
-		country_content.appendChild(aobject);
-	};
-
-	countryhtml = "<a href='#'>Non-UK</a>";
-	aobject = document.createElement("a");
-	aobject.innerHTML = countryhtml;
-	country_content.insertBefore(aobject, country_content.firstChild);
-
-	countryhtml = "<a href='#'>All</a>";
-	aobject = document.createElement("a");
-	aobject.innerHTML = countryhtml;
-	country_content.insertBefore(aobject, country_content.firstChild);
-
-	listitems = birdlistobj.children;
-
-	var favcol = data.map(function(value, index) { return value['Favourites'];});
-
-	var dropdownfilter = e => {
-	var filter_clicked = e.target.textContent;
-
-	if (birdgroups.includes(filter_clicked)) {
-		for (i=0;i<data.length;i++){
-			if (data[i]['bird_group'] == filter_clicked){
-				listitems[i].style.display = "";
-			}
-			else {listitems[i].style.display = "none"};
-		};
-	}
-
-	else if (filter_clicked == "All") {
-		for (i=0;i<data.length;i++){
-			listitems[i].style.display = "";
-			};
-	}
-
-	else if (filter_clicked == "Favourites") {
-		for (i=0;i<favcol.length;i++){
-			if (favcol[i] == "TRUE") {
-				listitems[i].style.display = "";
-			}
-			else {
-				listitems[i].style.display = "none";
-			};	
-		};
-	}
-
-	else if (countries.includes(filter_clicked)) {
-		var country_col = data.map(function(value, index) { return value[filter_clicked];});
-
-		for (i=0; i<country_col.length; i++){
-			if (country_col[i] == "TRUE") {
-				listitems[i].style.display = "";
-			}
-			else {
-				listitems[i].style.display = "none";
-			};
-		};
-	}
-
-	else if (filter_clicked == "Non-UK") {
-		uk_col = data.map(function(value, index) { return value["United_Kingdom"];});
-		for (i=0; i< uk_col.length; i++){
-			if (uk_col[i] == "TRUE") {
-				listitems[i].style.display = "none";
-			}
-			else {
-				listitems[i].style.display = "";
-			};
-		};
-	}
-	};
-
-	var dropdownitems = document.getElementsByClassName("dropdown-content");
-
-	for (i=0; i<dropdownitems.length; i++) {
-		for (j=0; j<dropdownitems[i].children.length; j++) {
-			dropdownitems[i].children[j].addEventListener("click", dropdownfilter);
-		};
-	};
 };
+
+
+
+
+
+
+

@@ -59,6 +59,10 @@ body {
   height:500px;
 }
 
+.container-fluid {
+  padding: 0px;
+}
+
 #panel1 {
   border: 1px dashed black;
   width: 32%;
@@ -85,8 +89,6 @@ body {
   padding:0;
   margin-left:1%;
 }
-
-
 
 #info-panel {
 /*  border: 1px dashed black;*/
@@ -115,42 +117,16 @@ body {
   margin-right: 2%;
 }
 
+input.search:focus {
+  outline: 1px solid darkslategray; 
+}
+
 #select-species {
   margin-top:10px;
+  margin-bottom:10px;
   height:7.5%;
   width: 20%;
   text-align: center;
-}
-
-.dropdowns {
-  /*color:darkslategray;
-  background-color: white;*/
-  border: none;
-  height:7.5%;
-  width: 100%;
-  margin-top:0;
-  margin-right:0;
-  margin-bottom:10px;
-  padding-left:2px;
-}
-
-.dropdown {
-/*  border: 1px solid black;*/
-  background-color: white;
-  height:7.5%;
-/*  position: relative;
-  display: inline-block;*/
-}
-
-#country-dropdown {
-  width:48%;
-  float:left;
-  margin-right:4%;
-}
-
-#group-dropdown {
-  width:48%;
-  float:left;
 }
 
 button {
@@ -169,48 +145,38 @@ button:hover {
   color: darkslateblue;
 }
 
-.dropdown-content {
-  display: none;
-  position: absolute;
-  background-color: white;
-  width: 100%;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  z-index: 1;
-  height:220px;
-  overflow-y: auto;
-  }
-
-.dropdown-content a {
-  color: lightslategray;
-  padding-left: 2px;
-  font-size: 11pt;
-  text-decoration: none;
-  display: block;
-}
-
-.dropdown-content a:hover {
-  color: darkslateblue;
-}
-
-input.search:focus {
-  outline: 1px solid darkslategray; 
-}
-
 .list-column {
   color:darkslategray;
   background-color: white;
+  list-style-type: none;
 /*  height:20%;*/
   width: 100%;
   overflow-y: scroll;
   padding-left:2px;
 }
 
-#group-column {
-  height: 25%;
+.list-column a:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+
+#group-column1 {
+  height: 100px;
+  width: 48%;
+  margin-top: 10px;
+  float: left;
+  margin-right: 4%;
+}
+
+#group-column2 {
+  height: 100px;
+  width: 48%;
+  margin-top: 10px;
+  border: 1px solid darkslateblue;
 }
 
 #country-column1 {
-  height: 25%;
+  height: 100px;
   width: 48%;
   margin-top: 10px;
   float: left;
@@ -218,26 +184,50 @@ input.search:focus {
 }
 
 #country-column2 {
-  height: 25%;
+  height: 100px;
   width: 48%;
   margin-top: 10px;
   border: 1px solid darkslateblue;
 }
 
-.checkbox {
+#fav {
   background-color: white;
-  height: 20px;
-  width: 20px;
+  height: 15px;
+  width: 15px;
   margin-top: 15px;
   margin-right: 10px;
   margin-bottom:5px;
-  float: left;
 }
 
 #fav_text {
-  color: lightslategray;
-  margin-top: 15px;
-  margin-bottom:5px;
+  color: darkslateblue;
+  font-weight: normal;
+  vertical-align: middle;
+  /*margin-top: 11px;
+  margin-bottom:5px;*/
+}
+
+#fav:hover {
+  cursor: pointer;
+}
+
+#fav_text {
+  cursor: pointer;
+}
+
+#comments_input {
+  float:left;
+/*  margin-left:0;*/
+  width:78%;
+  margin-right: 2%;
+}
+
+#select-comments {
+  height:7.5%;
+  width: 20%;
+  margin-top:10px;
+  margin-bottom:10px;
+  text-align: center;
 }
 
 #img_input {
