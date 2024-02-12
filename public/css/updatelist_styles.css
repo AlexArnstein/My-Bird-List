@@ -1,5 +1,5 @@
 body {
-  font-size: 16px;
+  font-size: 15px;
   color: #fff;
   background-color: white;
   font-family: "Poppins", sans-serif;
@@ -245,8 +245,8 @@ button:hover {
 }
 
 .save {
-  height: 10%;
-  margin-top:10px;
+  height: 11%;
+  margin-top:12px;
   text-align: center;
 }
 
@@ -270,7 +270,7 @@ li a.bird:hover, li a.bird:focus {
   text-align: center;
   color: lightslategray;
   margin-top: 15px;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 #bird-image {
@@ -285,7 +285,7 @@ li a.bird:hover, li a.bird:focus {
 #bird-comments {
   background-color: white;
   width:100%;
-  height:85px;
+  height:75px;
   margin-top:5px;
   white-space: pre-wrap;
 }
