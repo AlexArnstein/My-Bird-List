@@ -38,6 +38,13 @@ fetch('/api/table')
 			delete_country_button.addEventListener("click", delete_country);
 			delete_country_button.Params = [objects, data_p];
 
+			// backup_sql_button = objects[21];
+			// backup_sql_button.addEventListener("click", backup_sql);
+
+			backup_csv_button = objects[22];
+			backup_csv_button.addEventListener("click", backup_csv);
+			backup_csv_button.Params = [data_p];
+
 			});
 
 // process data -------------------------------------------
@@ -86,15 +93,15 @@ function get_objects() {
 	new_country_input = document.getElementById("new_country_input");
 	new_country_button = document.getElementById("new_country_button");
 	delete_country_button = document.getElementById("delete_country_button");
-	backup_sql = document.getElementById("backup_sql");
-	backup_csv = document.getElementById("backup_csv");
+	backup_sql_button = document.getElementById("backup_sql");
+	backup_csv_button = document.getElementById("backup_csv");
 
 
 	objects = [select_species_input, select_species_button, group_column1,
 		group_column2, country_column1, country_column2, fav_checkbox, comments_input,
 		comments_select, imagelink_input, imagelink_select, save_button, delete_button, imagepane,
 		commentspane, new_group_input, new_group_button, delete_group_button, new_country_input,
-		new_country_button, delete_country_button, backup_sql, backup_csv];
+		new_country_button, delete_country_button, backup_sql_button, backup_csv_button];
 
 	return objects
 };
@@ -569,3 +576,47 @@ function delete_country(evt) {
 	
 };
 
+// backup sql function --------------------------------
+
+// function backup_sql() {
+
+// 	console.log("SQL backup initiated");
+
+// 	fetch('/api/backup_sql', {
+// 		method: 'POST',
+// 		mode: 'cors',
+// 	}).then(response => response.text()).then(response => {
+
+// 	}).catch(error => console.log(error));
+
+// 	location.reload();
+// };
+
+// backup csv function -----------------------------------
+
+function backup_csv(evt) {
+
+	parameters = evt.currentTarget.Params;
+	data_p = parameters[0];
+	data = data_p[0];
+	headers = Object.keys(data[0]);
+
+	rows = [headers];
+
+	for (i=0; i<data.length; i++) {
+
+		row = Object.values(data[i]);
+		rows.push(row);
+	};
+
+	let csvContent = "data:text/csv;charset=utf-8,";
+
+	rows.forEach(function(rowArray) {
+		let row = rowArray.join(",");
+		csvContent += row + "\r\n";
+	});
+
+	var encodedUri = encodeURI(csvContent);
+	window.open(encodedUri);
+	console.log("Data backup to csv complete");
+};

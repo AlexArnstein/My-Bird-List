@@ -365,16 +365,17 @@ li a.bird:hover, li a.bird:focus {
   width:100%;
 }
 
-#backup_sql {
+/*#backup_sql {
   margin-right:2%;
   height:100%;
   width: 49%;
   float:left;
   text-align: center;
-}
+}*/
 
 #backup_csv {
   height:100%;
-  width: 49%;
+/*  margin-left:25%;*/
+  width: 100%;
   text-align: center;
 }

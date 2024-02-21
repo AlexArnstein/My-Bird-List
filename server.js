@@ -71,6 +71,9 @@ app.listen('3000', ()=> {
 	console.log('Server started on port 3000');
 });
 
+
+// save bird entry function -----------------------------------
+
 app.post('/api/save', (req, res) => {
 	console.log("Post received by server")
 
@@ -119,6 +122,7 @@ app.post('/api/save', (req, res) => {
 	});
 });
 
+// delete bird entry function -------------------------------
 
 app.post('/api/delete', (req, res) => {
 
@@ -156,6 +160,8 @@ app.post('/api/delete', (req, res) => {
 
 });
 
+// delete bird group function--------------------------------------
+
 app.post('/api/delete_group', (req, res) => {
 
 	group = req.body;
@@ -191,6 +197,8 @@ app.post('/api/delete_group', (req, res) => {
 	});
 
 });
+
+// new country function ------------------------------------
 
 app.post('/api/new_country', (req, res) => {
 
@@ -228,6 +236,8 @@ app.post('/api/new_country', (req, res) => {
 
 });
 
+// delete country function ------------------------------------
+
 app.post('/api/delete_country', (req, res) => {
 
 	country = req.body;
@@ -263,3 +273,17 @@ app.post('/api/delete_country', (req, res) => {
 	});
 
 });
+
+
+// // backup database function ---------------------------------
+
+// app.post('/api/backup_sql', (req, res) => {
+// 	url = "C:\\xampp\\mysql\\backup\\mydb.bak";
+// 	connection.query(`BACKUP DATABASE mydb TO DISK = '${url}';`, (err, result) => {
+// 		if (err){
+// 			console.log(err);
+// 		} else {
+// 			console.log(result);
+// 		};
+// 	});
+// });
