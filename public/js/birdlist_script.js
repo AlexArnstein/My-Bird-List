@@ -68,6 +68,10 @@ function listfunctionality(headers, data, birdlistobj) {
 			};
 		};
 
+		if (comments[bird_index] == null) {
+			comments[bird_index] = "";
+		};
+
 		commentspane.textContent = `${bird_selection} |${bird_countries}\n${comments[bird_index]}`;
 		commentspane.style.color = "lightslategray";
 
