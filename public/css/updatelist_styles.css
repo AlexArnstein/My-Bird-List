@@ -281,7 +281,7 @@ li a.bird:hover, li a.bird:focus {
 /*  background-color: lightslategray;*/
 }
 
-#preview {
+.subtitle {
   text-align: center;
   color: lightslategray;
   margin-top: 15px;
@@ -305,6 +305,76 @@ li a.bird:hover, li a.bird:focus {
   white-space: pre-wrap;
 }
 
+#new_group_div {
+  height:7.5%;
+  width:100%;
+  margin-top:8.5%;
+  margin-bottom: 5%;
+}
 
+#new_group_input {
+  float:left;
+  width:60%;
+  height: 100%;
+  margin-top: 0;
+  margin-right: 2%;
+}
 
+#new_group_button {
+  height: 100%;
+  width: 16%;
+  margin-right:2px;
+  text-align: center;
+}
 
+#delete_group_button {
+  height:100%;
+  width: 20%;
+  text-align: center;
+}
+
+#new_country_div {
+  height:7.5%;
+  width:100%;
+  margin-bottom:10%;
+}
+
+#new_country_input {
+  float:left;
+  width:60%;
+  height: 100%;
+  margin-top:0;
+  margin-right: 2%;
+}
+
+#new_country_button {
+  height: 100%;
+  width: 16%;
+  margin-right:2px;
+  text-align: center;
+}
+
+#delete_country_button {
+  height:100%;
+  width: 20%;
+  text-align: center;
+}
+
+#backups_div {
+  height:7.5%;
+  width:100%;
+}
+
+#backup_sql {
+  margin-right:2%;
+  height:100%;
+  width: 49%;
+  float:left;
+  text-align: center;
+}
+
+#backup_csv {
+  height:100%;
+  width: 49%;
+  text-align: center;
+}

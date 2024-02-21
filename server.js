@@ -155,3 +155,111 @@ app.post('/api/delete', (req, res) => {
 	});
 
 });
+
+app.post('/api/delete_group', (req, res) => {
+
+	group = req.body;
+
+	connection.query(`UPDATE birds SET bird_group = null WHERE bird_group = '${group['bird_group']}';`, (err, result) => {
+		if (err){
+			console.log(err);
+		} else {
+			console.log(result);
+		};
+	});
+
+	connection.query("SELECT * FROM birds;", (err, result) => {
+		if (err){
+			console.log(err);
+		} else {
+			data = result;
+			console.log("Data loaded");
+
+			connection.query("DESCRIBE birds;", (err, result) => {
+			if (err){
+				console.log(err);
+			} else {
+				headers = result.map(function(value, index) { return value['Field'];});
+				table = [headers, data];
+			};
+			});
+		};
+	});
+
+	app.get('/api/table', (req, res) => {
+	res.json(table);
+	});
+
+});
+
+app.post('/api/new_country', (req, res) => {
+
+	country = req.body;
+
+	connection.query(`ALTER TABLE birds ADD ${country['country']} varchar(5) AFTER Spain;`, (err, result) => {
+		if (err){
+			console.log(err);
+		} else {
+			console.log(result);
+		};
+	});
+
+	connection.query("SELECT * FROM birds;", (err, result) => {
+		if (err){
+			console.log(err);
+		} else {
+			data = result;
+			console.log("Data loaded");
+
+			connection.query("DESCRIBE birds;", (err, result) => {
+			if (err){
+				console.log(err);
+			} else {
+				headers = result.map(function(value, index) { return value['Field'];});
+				table = [headers, data];
+			};
+			});
+		};
+	});
+
+	app.get('/api/table', (req, res) => {
+	res.json(table);
+	});
+
+});
+
+app.post('/api/delete_country', (req, res) => {
+
+	country = req.body;
+
+	connection.query(`ALTER TABLE birds DROP ${country['country']};`, (err, result) => {
+		if (err){
+			console.log(err);
+		} else {
+			console.log(result);
+		};
+	});
+
+	connection.query("SELECT * FROM birds;", (err, result) => {
+		if (err){
+			console.log(err);
+		} else {
+			data = result;
+			console.log("Data loaded");
+
+			connection.query("DESCRIBE birds;", (err, result) => {
+			if (err){
+				console.log(err);
+			} else {
+				headers = result.map(function(value, index) { return value['Field'];});
+				table = [headers, data];
+			};
+			});
+		};
+	});
+
+	app.get('/api/table', (req, res) => {
+	res.json(table);
+	});
+
+});

@@ -22,6 +22,22 @@ fetch('/api/table')
 			delete_button.addEventListener("click", delete_entry);
 			delete_button.Params = [objects, data_p];
 
+			new_group_button = objects[16];
+			new_group_button.addEventListener("click", new_group);
+			new_group_button.Params = [objects, data_p];
+
+			delete_group_button = objects[17];
+			delete_group_button.addEventListener("click", delete_group);
+			delete_group_button.Params = [objects, data_p];
+
+			new_country_button = objects[19];
+			new_country_button.addEventListener("click", new_country);
+			new_country_button.Params = [objects, data_p];
+
+			delete_country_button = objects[20];
+			delete_country_button.addEventListener("click", delete_country);
+			delete_country_button.Params = [objects, data_p];
+
 			});
 
 // process data -------------------------------------------
@@ -33,7 +49,7 @@ function process_data(data, headers) {
 	var birdgroups = [...new Set(group_col)];
 	emptyindex = birdgroups.indexOf("");
 	birdgroups.splice(emptyindex, 1);
-	birdgroups.unshift("None");
+	// birdgroups.unshift("None");
 	groups_index = headers.indexOf("bird_group");
 	comments_index = headers.indexOf("Comments");
 	var all_countries = headers.slice(groups_index +1, comments_index);
@@ -51,7 +67,6 @@ function get_objects() {
 
 	select_species_input = document.getElementById("search-species");
 	select_species_button = document.getElementById("select-species");
-	//var filter = select_species_input.value.toUpperCase();
 	group_column1 = document.getElementById("group-column1");
 	group_column2 = document.getElementById("group-column2");
 	country_column1 = document.getElementById("country-column1");
@@ -65,11 +80,21 @@ function get_objects() {
 	delete_button = document.getElementById("delete-species");
 	imagepane = document.getElementById("bird-image");
 	commentspane = document.getElementById("bird-comments");
+	new_group_input = document.getElementById("new_group_input");
+	new_group_button = document.getElementById("new_group_button");
+	delete_group_button = document.getElementById("delete_group_button");
+	new_country_input = document.getElementById("new_country_input");
+	new_country_button = document.getElementById("new_country_button");
+	delete_country_button = document.getElementById("delete_country_button");
+	backup_sql = document.getElementById("backup_sql");
+	backup_csv = document.getElementById("backup_csv");
+
 
 	objects = [select_species_input, select_species_button, group_column1,
 		group_column2, country_column1, country_column2, fav_checkbox, comments_input,
 		comments_select, imagelink_input, imagelink_select, save_button, delete_button, imagepane,
-		commentspane];
+		commentspane, new_group_input, new_group_button, delete_group_button, new_country_input,
+		new_country_button, delete_country_button, backup_sql, backup_csv];
 
 	return objects
 };
@@ -369,39 +394,178 @@ function save_changes(evt) {
 // delete entry --------------------------------------------
 
 function delete_entry(evt) {
+	if (confirm("Are you sure?") == true) {
+		parameters = evt.currentTarget.Params;
+		objects = parameters[0];
+		data_p = parameters[1];
+
+		data = data_p[0];
+		
+		select_species_input = objects[0];	
+		var all_species = data_p[1];
+		var filter = select_species_input.value.toUpperCase();
+		var all_species_upper = all_species.map(function(x){ return x.toUpperCase(); });
+
+		if (all_species_upper.includes(filter) == true) {
+
+			index = all_species_upper.indexOf(filter);
+			species = all_species[index];
+
+			speciesToSend = JSON.stringify({'species':species});
+			console.log(speciesToSend);
+
+			fetch('/api/delete', {
+				method: 'POST',
+				mode: 'cors',
+				headers: {'Accept': 'application/json',
+					"Content-type": "application/json"},
+				body: speciesToSend
+
+			}).then(response => response.text()).then(response => {
+				
+			}).catch(error => console.log(error));
+
+			location.reload();
+		};
+	} else {
+		console.log("Delete aborted");
+	};
+};
+
+// new group -----------------------------------------------
+
+function new_group(evt){
 
 	parameters = evt.currentTarget.Params;
 	objects = parameters[0];
 	data_p = parameters[1];
 
-	data = data_p[0];
+	group_input = objects[15];
+	birdgroups = data_p[2];
+
+	if (birdgroups.includes(group_input.value) == true) {
+		console.log("Already an existing group");
+	} else {
+		
+		birdgroups.push(group_input.value);
+		data_p[2] = birdgroups;
+
+		select_species_button = objects[1];
+		select_species_button.Params = [objects, data_p, headers];
+	};
+};
+
+// delete group -------------------------------------------
+
+function delete_group(evt) {
+
+	if (confirm("Are you sure?") == true) {
+
+		parameters = evt.currentTarget.Params;
+		objects = parameters[0];
+		data_p = parameters[1];
+		
+		group_input = objects[15];
+
+		birdgroups = data_p[2];
+
+		group = JSON.stringify({'bird_group':group_input.value});
+
+		if (birdgroups.includes(group_input.value) == true) {
+
+			fetch('/api/delete_group', {
+				method: 'POST',
+				mode: 'cors',
+				headers: {'Accept': 'application/json',
+					"Content-type": "application/json"},
+				body: group
+
+			}).then(response => response.text()).then(response => {
+
+			}).catch(error => console.log(error));
+
+			location.reload();
+
+		} else {
+			console.log("Not an exisiting group");
+		};
+
+	} else {
+		console.log("Delete aborted");
+	};
+};
+
+// new country -------------------------------------------
+
+function new_country(evt) {
+
+	parameters = evt.currentTarget.Params;
+	objects = parameters[0];
+	data_p = parameters[1];
 	
-	select_species_input = objects[0];	
-	var all_species = data_p[1];
-	var filter = select_species_input.value.toUpperCase();
-	var all_species_upper = all_species.map(function(x){ return x.toUpperCase(); });
+	country_input = objects[18];
+	all_countries = data_p[3];
 
-	if (all_species_upper.includes(filter) == true) {
+	if (all_countries.includes(country_input.value) == true) {
+		console.log("Already an existing country option");
+	} else {
+		
+		country = {'country': country_input.value};
+		countryToSend = JSON.stringify(country);
 
-		index = all_species_upper.indexOf(filter);
-		species = all_species[index];
-
-		speciesToSend = JSON.stringify({'species':species});
-		console.log(speciesToSend);
-		//speciesToSend = JSON.parse(species);
-
-		fetch('/api/delete', {
+		fetch('/api/new_country', {
 			method: 'POST',
 			mode: 'cors',
 			headers: {'Accept': 'application/json',
 				"Content-type": "application/json"},
-			body: speciesToSend
+			body: countryToSend
 
 		}).then(response => response.text()).then(response => {
-			
+
 		}).catch(error => console.log(error));
 
 		location.reload();
-
 	};
 };
+
+// delete country --------------------------------------------
+
+function delete_country(evt) {
+
+	if (confirm("Are you sure?") == true) {
+
+		parameters = evt.currentTarget.Params;
+		objects = parameters[0];
+		data_p = parameters[1];
+		
+		country_input = objects[18];
+		all_countries = data_p[3];
+
+		if (all_countries.includes(country_input.value) == true) {
+
+			country = {'country': country_input.value};
+			countryToSend = JSON.stringify(country);
+
+			fetch('/api/delete_country', {
+				method: 'POST',
+				mode: 'cors',
+				headers: {'Accept': 'application/json',
+					"Content-type": "application/json"},
+				body: countryToSend
+
+			}).then(response => response.text()).then(response => {
+
+			}).catch(error => console.log(error));
+
+			location.reload();
+
+		} else {
+			console.log("Not an existing country option");
+		};
+
+	} else {
+		console.log("Delete aborted");
+	};
+	
+};
+
