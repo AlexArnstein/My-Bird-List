@@ -244,8 +244,23 @@ button:hover {
   text-align: center;
 }
 
+#save_delete_buttons {
+  height:11%;
+}
+
 .save {
-  height: 11%;
+  height: 100%;
+  width: 50%;
+  margin-top:12px;
+  text-align: center;
+  float:left;
+}
+
+.delete {
+  background-color: lightpink;
+  color: white;
+  height: 100%;
+  width: 50%;
   margin-top:12px;
   text-align: center;
 }
