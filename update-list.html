@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Alex's bird list</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet" href="css/updatelist_styles.css">
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+
+</head>
+
+<body>
+	<header>
+		<div class="header">
+			<div class="navitems">
+			  	<a class="brand" href="bird-list.html">Alex's bird list</a>
+		      	<a class="item" href="bird-list.html">Bird list</a>
+		      	<a class="item" href="totals.html">Totals</a>
+		      	<a class="item" href="update-list.html">Update list</a>
+	     	</div>
+
+		</div>
+	</header>
+	<div id="main-content" class="container-fluid">
+
+		<div id="panel1" class="container-fluid">
+
+			<input id="search-species" class="search" placeholder="Species name..."></input> <button id="select-species">select</button>
+
+			<div class="container-fluid">
+				<div id="group-column1" class="list-column">
+					<li><a>Group choices...</a></li>
+				</div>
+
+				<div id="group-column2" class="list-column">
+					<li><a>Group chosen (optional)...</a></li>
+				</div>
+			</div>
+
+			<div class="container-fluid">
+				<div id="country-column1" class="list-column">
+					<li><a>Country options...</a></li>
+				</div>
+
+				<div id="country-column2" class="list-column">
+					<li><a>Countries where species spotted...</a></li>
+				</div>
+			</div>
+
+			<div class="container-fluid"> 
+				<input id="fav" type="checkbox"></input> <label for="fav" id="fav_text">Favourite ?</label>
+			</div>
+
+			<input id="comments_input" class="search" placeholder="Comments..."></input> <button id="select-comments">select</button>
+
+			<input id="img_input" class="search" placeholder="Image link..."></input> <button id="select-img">select</button>
+
+			<div id ="save_delete_buttons"class="container-fluid">
+				<button id="save-species" class="save">SAVE CHANGES</button>
+				<button id="delete-species" class="delete">DELETE</button>
+			</div>
+
+		</div>
+
+		<div id="panel2" class="container-fluid">
+			<div id="preview" class="subtitle">preview</div>
+			<div id="bird-image"></div>
+			<div id="bird-comments"></div>
+		</div>
+
+		<div id="panel3" class="container-fluid">
+
+			<div class="subtitle">Edit columns</div>
+
+			<div id="new_group_div"class="container-fluid">
+				<input id="new_group_input" class="search "placeholder="Add or Delete bird group..."></input>
+				<button id="new_group_button">Add</button>
+				<button id="delete_group_button">Delete</button>
+			</div>
+
+			<div id="new_country_div"class="container-fluid">
+				<input id="new_country_input" class ="search" placeholder="Add or Delete country..."></input>
+				<button id="new_country_button">Add</button>
+				<button id="delete_country_button">Delete</button>
+			</div>
+
+			<div class="subtitle">Backup data</div>
+
+			<div id="backups_div" class="container-fluid">
+				<!-- <button id="backup_sql">Backup SQL</button> -->
+				<button id="backup_csv">Backup CSV</button>
+			</div>
+
+		</div>
+
+	</div>
+	
+	<div id="footer"></div>
+
+	<!-- <script src="js/jquery-3.7.0.min.js"></script> -->
+	<script src="js/updatelist_script.js"></script>
+
+</body>
+</html>
